@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\JsonResponse;
+
+class PengaduanResource extends JsonResource
+{
+    //define properti
+    public $status;
+    public $message;
+    // public $resource;
+    /**
+     * __construct
+     *
+     * @param  mixed $status
+     * @param  mixed $message
+     * @param  mixed $resource
+     * @return void
+     */
+    public function __construct($status, $message, $resource)
+    {
+        parent::__construct($resource);
+        $this->status  = $status;
+        $this->message = $message;
+    }
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        // return [
+        //     'success'   => $this->status,
+        //     'message'   => $this->message,
+        //     'metadata'      => $this->resource
+        // ];
+        return [];
+    }
+
+    public function toResponse($request): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengaduan berhasil ditambahkan',
+            'metadata' => (array) $this->resource
+        ]);
+    }
+
+}
