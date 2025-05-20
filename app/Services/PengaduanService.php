@@ -48,4 +48,9 @@ class PengaduanService
         }
         return $this->pengaduan->destroy($id);
     }
+
+    public function find($id)
+    {
+        return $this->pengaduan->find($id);
+    }
 }
